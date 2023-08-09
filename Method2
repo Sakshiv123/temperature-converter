@@ -1,0 +1,23 @@
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Conversion_Method2 {
+    private static final  DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss a z");
+    public static void main(String[] args) {
+
+        ZoneId sourceTimeZone =ZoneId.of("Asia/Kolkata");
+
+        ZoneId DestinationTimeZone =ZoneId.of("Europe/London");
+
+        LocalDateTime todayDateTime = LocalDateTime.now();
+
+        ZonedDateTime currentISTZoneDateTime = todayDateTime.atZone(sourceTimeZone);
+
+        ZonedDateTime currentBSTZoneDateTime = currentISTZoneDateTime.withZoneSameInstant(DestinationTimeZone);
+
+        System.out.println(dateTimeFormatter.format(currentISTZoneDateTime));
+        System.out.println(dateTimeFormatter.format(currentBSTZoneDateTime));
+    }
+}
